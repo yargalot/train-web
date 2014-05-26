@@ -159,6 +159,9 @@ module.exports = function(grunt) {
         https: false,
         changeOrigin: true,
         xforward: false,
+        rewrite: {
+          '^/api': ''
+        }
       }],
       livereload: {
         options: {
