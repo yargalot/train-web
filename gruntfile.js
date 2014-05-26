@@ -146,14 +146,42 @@ module.exports = function(grunt) {
     },
 
     // Make a server
+
     connect: {
-      server: {
+      options: {
+        port: 9000,
+        logger: 'dev',
+        hostname: 'localhost'
+      },
+      proxies: [{
+        context: '/api', // the context of the data service
+        host: 'mysterious-mountain-3628.herokuapp.com', // wherever the data service is running
+        https: false,
+        changeOrigin: true,
+        xforward: false,
+      }],
+      livereload: {
         options: {
-          port: 9000,
-          base: 'dist',
-          livereload: '<%= watch.options.livereload%>',
-          open: {
-            target: 'http://localhost:<%= connect.server.options.port%>'
+          open: true,
+          base: [
+            'dist'
+          ],
+          middleware: function (connect, options) {
+            var middlewares = [];
+
+            if (!Array.isArray(options.base)) {
+              options.base = [options.base];
+            }
+
+            // Setup the proxy
+            middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+
+            // Serve static files
+            options.base.forEach(function(base) {
+              middlewares.push(connect.static(base));
+            });
+
+            return middlewares;
           }
         }
       }
@@ -165,7 +193,7 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'jade', 'copy', 'uglify', 'cssmin', 'imagemin', 'connect', 'watch']);
-  grunt.registerTask('server',  ['clean', 'jade', 'less:development', 'copy', 'uglify', 'cssmin', 'imagemin', 'connect', 'watch']);
+  grunt.registerTask('server',  ['clean', 'jade', 'less:development', 'copy', 'uglify', 'cssmin', 'imagemin', 'configureProxies:server', 'connect:livereload', 'watch']);
   grunt.registerTask('build',   ['clean', 'jade', 'copy', 'uglify', 'cssmin', 'imagemin']);
 
 };
