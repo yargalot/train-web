@@ -1,0 +1,18 @@
+// Declare app level module which depends on filters, and services
+angular.module('helpMeChoose',
+  [
+    'ngRoute',
+    'ngAnimate'
+  ]
+).config(['$routeProvider', function(routeProvider) {
+  routeProvider
+  .when('/', {
+    controller: HomeController,
+    templateUrl: '/home/index.html'
+  }).when('/test', {
+      templateUrl: '/home/index.html',
+  });
+}])
+.config(function($provide, $httpProvider, $compileProvider) {
+
+});

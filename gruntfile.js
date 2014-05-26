@@ -1,0 +1,171 @@
+module.exports = function(grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      build: {
+        src: 'src/<%= pkg.name %>.js',
+        dest: 'build/<%= pkg.name %>.min.js'
+      }
+    },
+
+    // Clean the dist
+    clean: ['dist'],
+
+    copy: {
+      main: {
+        files: [
+          // includes files within path and its sub-directories
+          {
+            expand: true,
+            cwd: 'src',
+            src: ['images/**'],
+            dest: 'dist/'
+          },
+          {
+            expand: true,
+            flatten: true,
+            cwd: 'bower_components',
+            src: [
+              '/html5shiv/dist/html5shiv.min.js',
+              '/respond/dest/respond.min.js',
+              'angular/angular.js',
+              'angular-route/angular-route.js',
+              'angular-animate/angular-animate.js'
+            ],
+            dest: 'dist/js'
+          }
+        ]
+      },
+      app: {
+        files: [{
+          expand: true,
+          cwd: 'src/js',
+          src: ['app/**'],
+          dest: 'dist/js'
+        }]
+      }
+    },
+
+    // Jade Compliation
+    jade: {
+      development: {
+        options: {
+          data: {
+            debug: true
+          },
+          pretty: true
+        },
+        files: [{
+          expand: true,
+          cwd: 'src/jade',
+          src: ['**/*.jade', '!includes/**/*.jade'],
+          dest: 'dist/',
+          ext: '.html'
+        }]
+      }
+    },
+
+    less: {
+      development: {
+        files: {
+          "dist/css/style.css": "src/less/style.less"
+        }
+      },
+      production: {
+        options: {
+          paths: ["assets/css"],
+          cleancss: true,
+          modifyVars: {
+            imgPath: '"http://mycdn.com/path/to/images"',
+            bgColor: 'red'
+          }
+        },
+        files: {
+          "path/to/result.css": "path/to/source.less"
+        }
+      }
+    },
+
+    imagemin: {                          // Task
+      dynamic: {                         // Another target
+        files: [{
+          expand: true,                  // Enable dynamic expansion
+          cwd: 'src/images/',                   // Src matches are relative to this path
+          src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+          dest: 'dist/images/'                  // Destination path prefix
+        }]
+      }
+    },
+
+    uglify: {
+      jsMin: {
+        files: {
+          'dist/js/script.min.js': ['src/js/**/*.js']
+        }
+      }
+    },
+
+    // Minify CSS
+    cssmin: {
+      minify: {
+        expand: true,
+        cwd: 'dist/css/',
+        src: ['*.css', '!*.min.css'],
+        dest: 'dist/css/',
+        ext: '.min.css'
+      }
+    },
+
+    // Watch Task
+    watch: {
+      options : {
+        livereload: 35900,
+        interrupt: true
+      },
+      jade: {
+        files: 'src/jade/**/*.jade',
+        tasks: ['jade:development']
+      },
+      less: {
+        files: ['src/less/**/*.less'],
+        tasks: ['less:development']
+      },
+      js : {
+        files: ['src/js/**/*.js'],
+        tasks: ['copy:app']
+      },
+      images: {
+        files: ['src/images/**/*'],
+        tasks: ['copy:main']
+      }
+    },
+
+    // Make a server
+    connect: {
+      server: {
+        options: {
+          port: 9000,
+          base: 'dist',
+          livereload: '<%= watch.options.livereload%>',
+          open: {
+            target: 'http://localhost:<%= connect.server.options.port%>'
+          }
+        }
+      }
+    }
+  });
+
+  // Load the plugin that provides the "uglify" task.
+  require('load-grunt-tasks')(grunt);
+
+  // Default task(s).
+  grunt.registerTask('default', ['clean', 'jade', 'copy', 'uglify', 'cssmin', 'imagemin', 'connect', 'watch']);
+  grunt.registerTask('server',  ['clean', 'jade', 'less:development', 'copy', 'uglify', 'cssmin', 'imagemin', 'connect', 'watch']);
+  grunt.registerTask('build',   ['clean', 'jade', 'copy', 'uglify', 'cssmin', 'imagemin']);
+
+};
