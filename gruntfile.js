@@ -121,8 +121,7 @@ module.exports = function(grunt) {
         interrupt: true
       },
       jade: {
-        files: 'src/jade/**/*.jade',
-        tasks: ['jade:development']
+        files: 'views/**/*.jade'
       },
       less: {
         files: ['src/less/**/*.less'],
