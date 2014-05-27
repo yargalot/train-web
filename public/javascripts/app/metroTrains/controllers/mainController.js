@@ -6,8 +6,9 @@ function MainController($scope, $timeout, $window) {
 
   function initialize() {
     var mapOptions = {
-      center: new google.maps.LatLng(35.8615204,127.096405),
-      zoom: 8
+      center: new google.maps.LatLng(37.5651,126.98955),
+      zoom: 12,
+      zoomControl: false,
     };
 
     $window.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
@@ -16,31 +17,47 @@ function MainController($scope, $timeout, $window) {
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
-
   $scope.mapsMoveToLocation = function(lat, lng){
     var center = new google.maps.LatLng(lat, lng);
     // using global variable:
     $window.map.panTo(center);
+    $window.map.setZoom(16);
   };
-
 
   $scope.mapsSearchForPlace = function(place) {
     console.log(place);
 
-    var pyrmont = new google.maps.LatLng(-33.8665433,151.1956316);
+    var city = new google.maps.LatLng(37.5651,126.98955);
 
     var map = {
-      location : pyrmont,
+      location : city,
       radius : 50000,
-      query : place
+      query : place,
+      types : ['train_station']
     };
 
     $window.mapService.search(map, function(data, status) {
       console.log(data);
 
-      var location = new google.maps.LatLng(-33.8665433,151.1956316);
+      var location = data[0].geometry.location;
+      console.log(location);
+
+      $scope.mapsMoveToLocation(location.k,location.A);
 
     });
   };
+
+  function createMarker(place) {
+    var placeLoc = $window.mapService.geometry.location;
+    var marker = new google.maps.Marker({
+      map: map,
+      position: place.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(place.name);
+      infowindow.open(map, this);
+    });
+  }
 
 }
