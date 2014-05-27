@@ -5,5 +5,7 @@ h1 Herp Derp
   h4.alert-heading Loading Stations
   p Just wait a second
 
-ul
-  li(ng-repeat='station in stations') {{station.station_id}}: {{station.name_en}}, {{station.name_ko}}
+ul.list-unstyled
+  li(ng-repeat='station in stations')
+    h4 {{station.line}}: {{station.name_en}}, {{station.name_ko}}
+    p {{station}}

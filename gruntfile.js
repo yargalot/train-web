@@ -35,6 +35,7 @@ module.exports = function(grunt) {
               '/respond/dest/respond.min.js',
               'angular/angular.js',
               'angular-route/angular-route.js',
+              'angular-resource/angular-resource.js',
               'angular-animate/angular-animate.js'
             ],
             dest: 'dist/js'

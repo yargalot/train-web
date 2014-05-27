@@ -1,14 +1,11 @@
-HomeController.$inject = ['$scope', '$timeout', '$http'];
+HomeController.$inject = ['$scope', '$timeout', '$http', 'trainApi'];
 
-function HomeController($scope, $timeout, $http) {
+function HomeController($scope, $timeout, $http, trainApi) {
 
-  $http.get('/api/stations',{})
-    .success(function(data, status) {
-      $scope.stations = data.stations;
-    })
-    .error(function(data, status) {
-      $scope.stations = data || "Request failed";
-      $scope.status = status;
-    });
+  var api = trainApi.retrieve();
+
+  api.$promise.then(function(data) {
+    $scope.stations = data.stations;
+  });
 
 }

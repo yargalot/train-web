@@ -2,7 +2,9 @@
 angular.module('helpMeChoose',
   [
     'ngRoute',
-    'ngAnimate'
+    'ngAnimate',
+    'ngResource',
+    'Metro.Services'
   ]
 ).config(['$routeProvider', function(routeProvider) {
   routeProvider
