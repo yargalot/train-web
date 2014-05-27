@@ -5,7 +5,8 @@ function LineController($scope, $timeout, $http, $routeParams, trainApi) {
   $scope.lineName = $routeParams.lineId;
 
   var api = trainApi.retrieve({
-    lineId : $scope.lineName
+    service : 'stations',
+    id : $scope.lineName
   });
 
   api.$promise.then(function(data) {

@@ -16,7 +16,14 @@ angular.module('metroTrains',
   }).when('/stations/:lineId', {
     controller: LineController,
     templateUrl: '/stations/line.html'
-  }).otherwise({ redirectTo: '/'});
+  }).when('/trains', {
+    controller: TrainsController,
+    templateUrl: '/trains/index.html'
+  }).when('/trains/:trainId', {
+    controller: TrainSummaryController,
+    templateUrl: '/trains/train.html'
+  })
+  .otherwise({ redirectTo: '/'});
 }])
 .config(function($provide, $httpProvider, $compileProvider) {
 

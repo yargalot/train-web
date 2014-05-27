@@ -2,10 +2,11 @@ angular.module('Metro.Services', [])
 .factory('trainApi', ['$resource', function($resource) {
 
   var defaults = {
-    lineId : '@lineId'
+    service : '@service',
+    id : '@id'
   };
 
-  return $resource('/api/stations/:lineId', defaults, {
+  return $resource('/api/:service/:id', defaults, {
     'retrieve': { method : 'GET' }
   });
 

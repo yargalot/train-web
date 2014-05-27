@@ -1,0 +1,11 @@
+h1 Train {{trainId}}
+p: a(href="#/trains") Back to trains
+
+.alert.alert-info(ng-hide="trains")
+  h4.alert-heading Loading train data
+  p Just wait a second
+
+ul.list-unstyled
+  li(ng-repeat="train in trains")
+    h4 {{train.train_id}} going to {{train.station_id}}
+    p {{train}}
