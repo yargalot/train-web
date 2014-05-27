@@ -12,4 +12,7 @@ function TrainsController($scope, $timeout, $http, $routeParams, trainApi) {
     // Error handler
   });
 
+
+  $scope.mapsMoveToLocation(37.5651,126.98955);
+
 }

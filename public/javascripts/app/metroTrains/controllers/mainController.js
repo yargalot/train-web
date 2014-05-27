@@ -2,26 +2,20 @@ MainController.$inject = ['$scope', '$timeout', '$http', '$window'];
 
 function MainController($scope, $timeout, $window) {
 
-  $scope.test = 'OMG PIE';
+  var mapOptions = {
+    center: new google.maps.LatLng(37.5651,126.98955),
+    zoom: 12,
+    zoomControl: false,
+  };
 
-  function initialize() {
-    var mapOptions = {
-      center: new google.maps.LatLng(37.5651,126.98955),
-      zoom: 12,
-      zoomControl: false,
-    };
+  $window.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+  $window.mapService = new google.maps.places.PlacesService($window.map);
 
-    $window.map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-    $window.mapService = new google.maps.places.PlacesService($window.map);
-  }
-
-  google.maps.event.addDomListener(window, 'load', initialize);
-
-  $scope.mapsMoveToLocation = function(lat, lng){
+  $scope.mapsMoveToLocation = function(lat, lng, zoom){
     var center = new google.maps.LatLng(lat, lng);
     // using global variable:
     $window.map.panTo(center);
-    $window.map.setZoom(16);
+    $window.map.setZoom(zoom ? zoom : 12);
 
     var marker= new google.maps.Marker({
       position: center,
@@ -48,7 +42,7 @@ function MainController($scope, $timeout, $window) {
       var location = data[0].geometry.location;
       console.log(location);
 
-      $scope.mapsMoveToLocation(location.k,location.A);
+      $scope.mapsMoveToLocation(location.k,location.A, 16);
 
     });
   };
