@@ -9,3 +9,14 @@ ul.list-unstyled
   li(ng-repeat="train in trains")
     h4 {{train.train_id}} going to {{train.station_id}}
     p {{train}}
+
+
+.alert.alert-info(ng-hide="times || timesError")
+  h4.alert-heading Loading time data
+  p Just wait a second
+
+.alert.alert-danger(ng-show="timesError")
+  h4.alert-heading Error loading time
+  p {{timesError.statusText}}
+
+{{times}}
