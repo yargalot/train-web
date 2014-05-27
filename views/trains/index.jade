@@ -5,12 +5,13 @@ p: a(href="#/") Back
   h4.alert-heading Loading trains
   p Just wait a second
 
-.form-group
-  input.form-control(type="text", placeholder="Filter results", ng-model="filterResults")
+.content(ng-show="trains")
+  .form-group
+    input.form-control(type="text", placeholder="Filter results", ng-model="filterResults")
 
-ul.list-unstyled
-  li(ng-repeat="train in trains | filter:filterResults")
-    h4
-      a(ng-href="#/trains/{{train.train_id}}") {{train.train_id}}
-      |&nbsp;going to {{train.station_id}}
-    p {{train}}
+  ul.list-unstyled
+    li(ng-repeat="train in trains | filter:filterResults")
+      h4
+        a(ng-href="#/trains/{{train.train_id}}") {{train.train_id}}
+        |&nbsp;going to {{train.station_id}}
+      //- p {{train}}

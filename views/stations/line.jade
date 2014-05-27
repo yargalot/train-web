@@ -6,10 +6,11 @@ h1 Line {{lineName}}&nbsp;
   h4.alert-heading Loading Stations
   p Just wait a second
 
-.form-group
-  input.form-control(type="text", placeholder="Filter results", ng-model="filterResults")
+.content(ng-show="stations")
+  .form-group
+    input.form-control(type="text", placeholder="Filter results", ng-model="filterResults")
 
-ul.list-unstyled
-  li(ng-repeat='station in stations | filter:filterResults')
-    h4 {{station.line}} {{station.name_en}}, {{station.name_ko}}
-    //- p {{station}}
+  ul.list-unstyled
+    li(ng-repeat='station in stations | filter:filterResults')
+      h4 {{station.line}} {{station.name_en}}, {{station.name_ko}}
+      //- p {{station}}
