@@ -37,6 +37,9 @@ function MainController($scope, $timeout, $window) {
 
     $window.mapService.search(map, function(data, status) {
       console.log(data);
+
+      var location = new google.maps.LatLng(-33.8665433,151.1956316);
+
     });
   };
 
