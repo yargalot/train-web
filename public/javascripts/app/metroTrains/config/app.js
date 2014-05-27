@@ -9,19 +9,19 @@ angular.module('metroTrains',
 ).config(['$routeProvider', function(routeProvider) {
   routeProvider
   .when('/', {
-    templateUrl: '/home/index.html'
+    templateUrl: '/home'
   }).when('/stations', {
     controller: StationController,
-    templateUrl: '/stations/index.html'
+    templateUrl: '/stations'
   }).when('/stations/:lineId', {
     controller: LineController,
-    templateUrl: '/stations/line.html'
+    templateUrl: '/stations/line'
   }).when('/trains', {
     controller: TrainsController,
-    templateUrl: '/trains/index.html'
+    templateUrl: '/trains'
   }).when('/trains/:trainId', {
     controller: TrainSummaryController,
-    templateUrl: '/trains/train.html'
+    templateUrl: '/trains/train'
   })
   .otherwise({ redirectTo: '/'});
 }])

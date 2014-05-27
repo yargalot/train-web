@@ -41,14 +41,6 @@ module.exports = function(grunt) {
             dest: 'public/javascripts/'
           }
         ]
-      },
-      app: {
-        files: [{
-          expand: true,
-          cwd: 'src/js',
-          src: ['app/**'],
-          dest: 'public/javascripts/'
-        }]
       }
     },
 
@@ -137,8 +129,7 @@ module.exports = function(grunt) {
         tasks: ['less:development']
       },
       js : {
-        files: ['src/js/**/*.js'],
-        tasks: ['copy:app', 'uglify']
+        files: ['src/js/**/*.js']
       },
       images: {
         files: ['src/images/**/*'],
@@ -200,7 +191,7 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'jade', 'copy', 'uglify', 'cssmin', 'imagemin', 'connect', 'watch']);
-  grunt.registerTask('server',  ['clean', 'jade', 'less:development', 'copy', 'uglify', 'cssmin', 'imagemin', 'configureProxies:server', 'connect:livereload', 'watch']);
+  grunt.registerTask('server',  ['clean', 'jade', 'less:development', 'copy', 'uglify', 'cssmin', 'imagemin', 'watch']);
   grunt.registerTask('build',   ['clean', 'jade', 'copy', 'uglify', 'cssmin', 'imagemin']);
 
 };

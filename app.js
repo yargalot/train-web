@@ -24,12 +24,48 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+app.route('/home')
+  .all(function(req, res, next) {
+    // runs for all HTTP verbs first
+    console.log('test');
+    res.render('home/index.jade', { title: 'Express' });
+  });
+
+app.route('/stations')
+  .all(function(req, res, next) {
+    // runs for all HTTP verbs first
+    console.log('test');
+    res.render('stations/index.jade', { title: 'Express' });
+  });
+
+app.route('/stations/line')
+  .all(function(req, res, next) {
+    // runs for all HTTP verbs first
+    console.log('test');
+    res.render('stations/line.jade', { title: 'Express' });
+  });
+
+app.route('/trains')
+  .all(function(req, res, next) {
+    // runs for all HTTP verbs first
+    console.log('test');
+    res.render('trains/index.jade', { title: 'Express' });
+  });
+
+app.route('/trains/train')
+  .all(function(req, res, next) {
+    // runs for all HTTP verbs first
+    console.log('test');
+    res.render('trains/train.jade', { title: 'Express' });
+  });
+
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
+
 
 /// error handlers
 
