@@ -38,7 +38,7 @@ module.exports = function(grunt) {
               'angular-resource/angular-resource.js',
               'angular-animate/angular-animate.js'
             ],
-            dest: 'dist/js'
+            dest: 'public/javascripts/'
           }
         ]
       },
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'src/js',
           src: ['app/**'],
-          dest: 'dist/js'
+          dest: 'public/javascripts/'
         }]
       }
     },
