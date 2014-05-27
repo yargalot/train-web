@@ -1,5 +1,5 @@
 // Declare app level module which depends on filters, and services
-angular.module('helpMeChoose',
+angular.module('metroTrains',
   [
     'ngRoute',
     'ngAnimate',

@@ -6,6 +6,8 @@ function HomeController($scope, $timeout, $http, trainApi) {
 
   api.$promise.then(function(data) {
     $scope.stations = data.stations;
+  }, function(data){
+    // Error handler
   });
 
 }
