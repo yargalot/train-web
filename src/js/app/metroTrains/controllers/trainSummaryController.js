@@ -1,6 +1,6 @@
-TrainSummaryController.$inject = ['$scope', '$timeout', '$http', '$routeParams', 'trainApi'];
+TrainSummaryController.$inject = ['$scope', '$timeout', '$http', '$routeParams', '$window', 'trainApi'];
 
-function TrainSummaryController($scope, $timeout, $http, $routeParams, trainApi) {
+function TrainSummaryController($scope, $timeout, $http, $routeParams, $window, trainApi) {
 
   $scope.trainId = $routeParams.trainId;
 
@@ -26,5 +26,7 @@ function TrainSummaryController($scope, $timeout, $http, $routeParams, trainApi)
     // Error handler
     $scope.timesError = data;
   });
+
+  $scope.mapsSearchForPlace('Aeogae');
 
 }
