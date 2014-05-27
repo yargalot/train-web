@@ -152,6 +152,7 @@ module.exports = function(grunt) {
       options: {
         port: 9000,
         logger: 'dev',
+        debug: true,
         hostname: 'localhost'
       },
       proxies: [{

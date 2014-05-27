@@ -1,6 +1,6 @@
-HomeController.$inject = ['$scope', '$timeout', '$http', 'trainApi'];
+StationController.$inject = ['$scope', '$timeout', '$http', 'trainApi'];
 
-function HomeController($scope, $timeout, $http, trainApi) {
+function StationController($scope, $timeout, $http, trainApi) {
 
   var api = trainApi.retrieve();
 

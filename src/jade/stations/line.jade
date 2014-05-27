@@ -1,0 +1,11 @@
+h1 Line
+//- p {{stations}}
+
+.alert.alert-info(ng-hide="stations")
+  h4.alert-heading Loading Stations
+  p Just wait a second
+
+ul.list-unstyled
+  li(ng-repeat='station in stations')
+    h4 {{station.line}}: {{station.name_en}}, {{station.name_ko}}
+    p {{station}}

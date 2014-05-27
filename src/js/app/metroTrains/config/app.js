@@ -9,11 +9,14 @@ angular.module('metroTrains',
 ).config(['$routeProvider', function(routeProvider) {
   routeProvider
   .when('/', {
-    controller: HomeController,
     templateUrl: '/home/index.html'
-  }).when('/test', {
-      templateUrl: '/home/index.html',
-  });
+  }).when('/stations', {
+    controller: StationController,
+    templateUrl: '/stations/index.html'
+  }).when('/stations/:lineId', {
+    controller: LineController,
+    templateUrl: '/stations/line.html'
+  }).otherwise({ redirectTo: '/'});
 }])
 .config(function($provide, $httpProvider, $compileProvider) {
 
