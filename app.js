@@ -4,6 +4,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var request = require('request');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -58,6 +59,11 @@ app.route('/trains/train')
     console.log('test');
     res.render('trains/train.jade', { title: 'Express' });
   });
+
+app.use('/api', function(req, res) {
+  url = 'http://mysterious-mountain-3628.herokuapp.com/' + req.url;
+  req.pipe(request(url)).pipe(res);
+});
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
