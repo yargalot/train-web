@@ -22,6 +22,12 @@ function MainController($scope, $timeout, $window) {
     // using global variable:
     $window.map.panTo(center);
     $window.map.setZoom(16);
+
+    var marker= new google.maps.Marker({
+      position: center,
+    });
+
+    marker.setMap($window.map);
   };
 
   $scope.mapsSearchForPlace = function(place) {
