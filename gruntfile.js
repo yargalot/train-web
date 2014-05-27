@@ -138,7 +138,7 @@ module.exports = function(grunt) {
       },
       js : {
         files: ['src/js/**/*.js'],
-        tasks: ['copy:app']
+        tasks: ['copy:app', 'uglify']
       },
       images: {
         files: ['src/images/**/*'],
