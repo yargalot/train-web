@@ -2,13 +2,11 @@ LineController.$inject = ['$scope', '$timeout', '$http', '$routeParams', 'trainA
 
 function LineController($scope, $timeout, $http, $routeParams, trainApi) {
 
-  var currentLine = $routeParams.lineId;
+  $scope.lineName = $routeParams.lineId;
 
   var api = trainApi.retrieve({
-    lineId : currentLine
+    lineId : $scope.lineName
   });
-
-  console.log(currentLine);
 
   api.$promise.then(function(data) {
     $scope.stations = data.stations;
