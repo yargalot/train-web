@@ -1,0 +1,21 @@
+
+<h1>Train {{trainId}}</h1>
+<p><a href="#/trains">Back to trains</a></p>
+<div ng-hide="trains" class="alert alert-info">
+  <h4 class="alert-heading">Loading train data</h4>
+  <p>Just wait a second</p>
+</div>
+<ul class="list-unstyled">
+  <li ng-repeat="train in trains">
+    <h4>{{train.train_id}} going to {{train.station_id}}</h4>
+    <p>{{train}}</p>
+  </li>
+</ul>
+<div ng-hide="times || timesError" class="alert alert-info">
+  <h4 class="alert-heading">Loading time data</h4>
+  <p>Just wait a second</p>
+</div>
+<div ng-show="timesError" class="alert alert-danger">
+  <h4 class="alert-heading">Error loading time</h4>
+  <p>{{timesError.statusText}}</p>
+</div>{{times}}
