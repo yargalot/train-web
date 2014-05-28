@@ -5795,12 +5795,13 @@ button.close {
 }
 .container {
   position: relative;
+  width: 400px;
+  margin: 0;
   z-index: 1;
-  background: rgba(255, 255, 255, 0.9);
 }
 #map-canvas {
   position: fixed !important;
-  left: 0;
+  left: 400px;
   right: 0;
   top: 0;
   bottom: 0;
