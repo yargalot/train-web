@@ -6,14 +6,18 @@ p: a(href="#/") Back
   h4.alert-heading Loading Stations
   p Just wait a second
 
-
 .content(ng-show="stations")
-  .form-group
-    input.form-control(type="text", placeholder="Filter results", ng-model="filterResults")
+  .row
+    .col-xs-8.form-group
+      input.form-control(type="text", placeholder="Filter results", ng-model="search.$")
+    .col-xs-4.form-group
+      select.form-control(ng-options="o as o for o in lines", ng-model="search.line", ng-change="changeLine()")
+        option(value="") Choose line
 
   ul.list-unstyled
-    li(ng-repeat='station in stations | filter:filterResults')
+    li(ng-repeat='station in stations | filter:search')
       h4
         a(ng-href="#/stations/{{station.line}}"){{station.line}}&nbsp;
         | {{station.name_en}}, {{station.name_ko}}
+      p: a(ng-href="{{station._links[0].url}}", target="_blank") View station
       //- p {{station}}

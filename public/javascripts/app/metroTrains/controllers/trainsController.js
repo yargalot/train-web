@@ -6,13 +6,19 @@ function TrainsController($scope, $timeout, $http, $routeParams, trainApi) {
     service : 'trains'
   });
 
+  var log = [];
+
   api.$promise.then(function(data) {
     $scope.trains = data.trains;
+
   }, function(data){
     // Error handler
   });
 
 
+
   $scope.mapsMoveToLocation(37.5651,126.98955);
+
+
 
 }

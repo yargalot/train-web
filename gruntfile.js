@@ -31,8 +31,7 @@ module.exports = function(grunt) {
             flatten: true,
             cwd: 'bower_components',
             src: [
-              '/html5shiv/dist/html5shiv.min.js',
-              '/respond/dest/respond.min.js',
+              'underscore/underscore.js',
               'angular/angular.js',
               'angular-route/angular-route.js',
               'angular-resource/angular-resource.js',
@@ -128,7 +127,7 @@ module.exports = function(grunt) {
         tasks: ['less:development']
       },
       js : {
-        files: ['src/js/**/*.js']
+        files: ['public/javascripts/**/*.js']
       },
       images: {
         files: ['src/images/**/*'],
@@ -190,7 +189,7 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'jade', 'copy', 'uglify', 'cssmin', 'imagemin', 'connect', 'watch']);
-  grunt.registerTask('server',  ['clean', 'jade', 'less:development', 'copy', 'uglify', 'cssmin', 'imagemin', 'watch']);
+  grunt.registerTask('server',  ['less:development', 'copy', 'watch']);
   grunt.registerTask('build',   ['clean', 'jade', 'copy', 'uglify', 'cssmin', 'imagemin']);
 
 };
