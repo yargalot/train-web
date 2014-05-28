@@ -1,9 +1,13 @@
 h1 Trains
 p: a(href="#/") Back
 
-.alert.alert-info(ng-hide="trains")
+.alert.alert-info(ng-hide="trains || loadError")
   h4.alert-heading Loading trains
   p Just wait a second
+
+.alert.alert-danger(ng-show="loadError")
+  h4 Error loading data
+  p The API is down
 
 .content(ng-show="trains")
   .form-group

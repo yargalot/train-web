@@ -13,6 +13,7 @@ function TrainsController($scope, $timeout, $http, $routeParams, trainApi) {
 
   }, function(data){
     // Error handler
+    $scope.loadError = true;
   });
 
 

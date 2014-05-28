@@ -20,6 +20,8 @@ function StationController($scope, $timeout, $http, $location, trainApi) {
   }, function(data){
     // Error handler
 
+    console.log(data);
+
     $scope.loadError = true;
   });
 
