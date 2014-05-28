@@ -1,9 +1,13 @@
 h1 Stations
 p: a(href="#/") Back
 
-.alert.alert-info(ng-hide="stations")
+.alert.alert-info(ng-hide="stations || loadError")
   h4.alert-heading Loading Stations
   p Just wait a second
+
+.alert.alert-danger(ng-show="loadError")
+  h4 Error loading data
+  p The API is down
 
 .content(ng-show="stations")
   .row

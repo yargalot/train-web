@@ -19,6 +19,8 @@ function StationController($scope, $timeout, $http, $location, trainApi) {
 
   }, function(data){
     // Error handler
+
+    $scope.loadError = true;
   });
 
 
