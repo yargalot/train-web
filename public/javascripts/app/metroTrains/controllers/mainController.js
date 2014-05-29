@@ -2,6 +2,10 @@ MainController.$inject = ['$scope', '$timeout', '$http', '$window'];
 
 function MainController($scope, $timeout, $window) {
 
+  $scope.search = {
+    lines: []
+  };
+
   var mapOptions = {
     center: new google.maps.LatLng(37.5651,126.98955),
     zoom: 12,

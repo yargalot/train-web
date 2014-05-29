@@ -1,0 +1,7 @@
+header.header
+  .row
+    .col-xs-8
+      input.form-control(type="text", placeholder="Filter results", ng-model="search.text")
+    .col-xs-4
+      select.form-control(ng-options="o as o for o in lines", ng-model="search.line", ng-change="changeLine()")
+        option(value="") Choose line

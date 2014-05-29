@@ -15,7 +15,7 @@ function StationController($scope, $timeout, $http, $location, trainApi) {
        this.push(value.line);
     }, log);
 
-    $scope.lines = _.uniq(log);
+    $scope.search.lines = _.uniq(log);
 
   }, function(data){
     // Error handler

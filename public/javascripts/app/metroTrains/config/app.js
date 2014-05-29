@@ -9,7 +9,8 @@ angular.module('metroTrains',
 ).config(['$routeProvider', function(routeProvider) {
   routeProvider
   .when('/', {
-    templateUrl: '/home'
+    templateUrl: '/stations',
+    controller: StationController
   }).when('/stations', {
     controller: StationController,
     templateUrl: '/stations'
